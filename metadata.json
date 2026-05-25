@@ -1,0 +1,6 @@
+{
+  "name": "SUVI Healthcare Platform",
+  "description": "Agentic AI health care platform for hospital and clinics with Scribe, Triage, Conversational, Imaging, and Documentation agents.",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}
