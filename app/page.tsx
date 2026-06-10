@@ -23,33 +23,37 @@ export default function Home() {
   const [users, setUsers] = useState<User[]>([]);
 
   useEffect(() => {
-    const role = getCookie('auth_role');
-    const username = getCookie('auth_username');
-    const posting = getCookie('auth_posting');
-    const agentsStr = getCookie('auth_agents') || '[]';
+    const checkSession = async () => {
+      const role = getCookie('auth_role');
+      const username = getCookie('auth_username');
+      const posting = getCookie('auth_posting');
+      const agentsStr = getCookie('auth_agents') || '[]';
 
-    if (!role || !username) {
-      router.push('/login');
-      return;
-    }
+      if (!role || !username) {
+        router.push('/login');
+        setLoading(false);
+        return;
+      }
 
-    let agents = [];
-    try {
-      agents = JSON.parse(agentsStr);
-    } catch (e) {
-      agents = [];
-    }
+      let agents = [];
+      try {
+        agents = JSON.parse(agentsStr);
+      } catch (e) {
+        agents = [];
+      }
 
-    setSession({ role, username, posting, agents });
+      setSession({ role, username, posting, agents });
 
-    if (role === 'superadmin' || role === 'admin') {
-      getUsersAction().then((res) => {
+      if (role === 'superadmin' || role === 'admin') {
+        const res = await getUsersAction();
         setUsers(res);
         setLoading(false);
-      });
-    } else {
-      setLoading(false);
-    }
+      } else {
+        setLoading(false);
+      }
+    };
+
+    checkSession();
   }, [router]);
 
   if (loading) {

@@ -140,7 +140,7 @@ export default function LoginPage() {
                 <span className="opacity-60 font-normal">Password: password</span>
               </p>
               <p className="text-[10px] text-indigo-500 font-medium mt-1">
-                * Select "doctor" to demo first-time MFA setup
+                * Select &quot;doctor&quot; to demo first-time MFA setup
               </p>
             </div>
           </motion.div>
@@ -209,7 +209,7 @@ export default function LoginPage() {
             <form onSubmit={handleMfaSubmit} className="flex flex-col gap-5">
               {mfaData?.secret && (
                 <div className="flex flex-col gap-1.5">
-                  <span className="text-[10px] font-mono text-slate-400 uppercase tracking-wider text-center">Can't scan? Use code:</span>
+                  <span className="text-[10px] font-mono text-slate-400 uppercase tracking-wider text-center">Can&apos;t scan? Use code:</span>
                   <div className="flex items-center justify-between gap-2 bg-slate-100/80 border border-slate-200/50 rounded-xl px-3.5 py-2 font-mono text-xs text-slate-700">
                     <span className="font-semibold">{mfaData.secret}</span>
                     <button 
